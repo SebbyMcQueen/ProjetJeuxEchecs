@@ -100,6 +100,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="piece.cpp" />
+    <ClCompile Include="RAII.cpp" />
     <ClCompile Include="TestJeuxEchecs.cpp" />
     <QtRcc Include="ProjetJeuxEchecs.qrc" />
     <QtUic Include="ProjetJeuxEchecs.ui" />
@@ -109,6 +111,10 @@
     <ClCompile Include="googletest\src\gtest-all.cc" />
     <ClCompile Include="ProjetJeuxEchecs.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="piece.hpp" />
+    <ClInclude Include="RAII.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
