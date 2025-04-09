@@ -100,6 +100,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="echiquier.cpp" />
     <ClCompile Include="piece.cpp" />
     <ClCompile Include="RAII.cpp" />
     <ClCompile Include="TestJeuxEchecs.cpp" />
@@ -113,6 +114,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="echiquier.hpp" />
     <ClInclude Include="piece.hpp" />
     <ClInclude Include="RAII.hpp" />
   </ItemGroup>

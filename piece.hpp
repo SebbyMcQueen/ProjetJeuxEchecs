@@ -4,6 +4,10 @@
 
 namespace modele {
 
+	enum class TypePiece {
+		Roi, Reine, Tour, Fou, Cavalier, Pion
+	};
+
 	class TropDeRois : public std::exception {
 	public :
 		const char* what() const noexcept override {

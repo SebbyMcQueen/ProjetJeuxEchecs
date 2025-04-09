@@ -3,19 +3,31 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_ProjetJeuxEchecs.h"
 #include <QPushButton>
+#include "echiquier.hpp"
+#include "piece.hpp"
+#include <vector>
+#include <memory>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ProjetJeuxEchecsClass; };
 QT_END_NAMESPACE
 
-class ProjetJeuxEchecs : public QMainWindow
-{
-    Q_OBJECT
+namespace interface {
 
-public:
-    ProjetJeuxEchecs(QWidget *parent = nullptr);
-    ~ProjetJeuxEchecs();
+    class ProjetJeuxEchecs : public QMainWindow
+    {
+        Q_OBJECT
 
-private:
-    Ui::ProjetJeuxEchecsClass *ui;
-};
+    public:
+        ProjetJeuxEchecs(QWidget* parent = nullptr);
+        ~ProjetJeuxEchecs();
+
+    private:
+        Ui::ProjetJeuxEchecsClass* ui;
+        modele::Echiquier echiquier;
+        std::vector<std::vector<QPushButton*>> boutonsEchiquier;
+
+        void afficherEchiquier();
+        void ajouterRoi(int x, int y);
+    };
+}
