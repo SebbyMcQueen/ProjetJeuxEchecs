@@ -1,4 +1,12 @@
-﻿#include "ProjetJeuxEchecs.h"
+﻿/**
+* Programme gérant l'interface graphique et la gestion de celle-ci
+* \file ProjetJeuxEchecs.cpp
+* \author Sebastian Crête et Stella Pastor
+* \date 26 avril 2025
+* Créé le 3 avril 2025
+**/
+
+#include "ProjetJeuxEchecs.h"
 namespace interface {
     ProjetJeuxEchecs::ProjetJeuxEchecs(QWidget* parent)
         : QMainWindow(parent), ui(new Ui::ProjetJeuxEchecsClass()) {

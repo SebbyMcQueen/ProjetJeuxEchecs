@@ -1,3 +1,11 @@
+/**
+* Programme gérant l'échiquier, les intéractions entre les pièces et la logique de jeu
+* \file echiquier.cpp
+* \author Sebastian Crête et Stella Pastor
+* \date 26 avril 2025
+* Créé le 3 avril 2025
+**/
+
 #include "echiquier.hpp"
 #include "RAII.hpp"
 #include <algorithm>
@@ -34,14 +42,11 @@ namespace modele {
 		if (piece->getNom() == "Pion") {
 			int dy = y2 - y1;
 
-			// Mouvement droit (sans prise)
 			if (dy == 0) {
-				// Case d'arrivée doit être vide
 				if (getPieceAt(x2, y2) != nullptr) {
 					return false;
 				}
 
-				// Pour mouvement de 2 cases, case intermédiaire doit être vide
 				if (abs(x2 - x1) == 2) {
 					int xInter = (x1 + x2) / 2;
 					if (getPieceAt(xInter, y2) != nullptr) {
@@ -49,9 +54,8 @@ namespace modele {
 					}
 				}
 			}
-			// Mouvement diagonal (prise)
+
 			else {
-				// Doit y avoir une pièce adverse à capturer
 				const Piece* pieceCible = getPieceAt(x2, y2);
 				if (!pieceCible || pieceCible->getCouleur() == piece->getCouleur()) {
 					return false;
@@ -89,7 +93,6 @@ namespace modele {
 	bool Echiquier::estEnEchec(Couleur couleur) const {
 		std::pair<int, int> positionRoi;
 
-		// Trouver la position du roi de la couleur specifiee
 		for (const auto& piece : pieces) {
 			if (piece->getNom() == "Roi" && piece->getCouleur() == couleur) {
 				positionRoi = piece->getPosition();
@@ -97,16 +100,13 @@ namespace modele {
 			}
 		}
 
-		// Verifier si une piece adverse peut atteindre le roi
 		for (const auto& piece : pieces) {
 			if (piece->getCouleur() != couleur) {
-				// Pour le cavalier, on ne vérifie pas le chemin
 				if (piece->getNom() == "Cavalier") {
 					if (piece->estMouvementValide(positionRoi.first, positionRoi.second)) {
 						return true;
 					}
 				}
-				// Pour les autres pièces, on vérifie le chemin
 				else if (piece->estMouvementValide(positionRoi.first, positionRoi.second) &&
 					cheminLibre(piece->getPosition().first,
 						piece->getPosition().second,
@@ -143,7 +143,6 @@ namespace modele {
 
 	bool Echiquier::mouvementMetEnEchec(Couleur couleur, int xDepart, int yDepart,
 		int xArrivee, int yArrivee) const {
-		// Trouver la piece a deplacer
 		const Piece* piece = nullptr;
 		for (const auto& p : pieces) {
 			if (p->getPosition() == std::make_pair(xDepart, yDepart)) {
@@ -153,10 +152,8 @@ namespace modele {
 		}
 		if (!piece) return true;
 
-		// Vérifier si le mouvement capture la pièce qui met en échec
 		const Piece* pieceCible = getPieceAt(xArrivee, yArrivee);
 		if (pieceCible && pieceCible->getCouleur() != couleur) {
-			// Si on capture une pièce adverse, vérifier si c'est celle qui cause l'échec
 			pair<int, int> positionRoi;
 			for (const auto& p : pieces) {
 				if (p->getNom() == "Roi" && p->getCouleur() == couleur) {
@@ -165,25 +162,21 @@ namespace modele {
 				}
 			}
 
-			// Vérifier si la pièce cible met actuellement le roi en échec
 			if (pieceCible->estMouvementValide(positionRoi.first, positionRoi.second)) {
 				if (pieceCible->getNom() != "Cavalier") {
 					if (cheminLibre(pieceCible->getPosition().first,
 						pieceCible->getPosition().second,
 						positionRoi.first,
 						positionRoi.second)) {
-						// Capturer cette pièce enlève l'échec
 						return false;
 					}
 				}
 				else {
-					// Pour le cavalier, pas besoin de vérifier le chemin
 					return false;
 				}
 			}
 		}
 
-		// Simuler le mouvement normalement pour les autres cas
 		try {
 			RAII dt(*const_cast<Piece*>(piece), xArrivee, yArrivee);
 			return estEnEchec(couleur);
@@ -194,21 +187,16 @@ namespace modele {
 	}
 
 	bool Echiquier::aMouvementValide(Couleur couleur) const {
-		// Pour chaque piece de la couleur donnee
 		for (const auto& piece : pieces) {
 			if (piece->getCouleur() == couleur) {
 				auto [x, y] = piece->getPosition();
-
-				// Verifier tous les mouvements possibles
 				for (int i = 0; i < 8; ++i) {
 					for (int j = 0; j < 8; ++j) {
 						if (piece->estMouvementValide(i, j)) {
-							// Verifier les obstructions (sauf pour le cavalier)
 							if (piece->getNom() != "Cavalier" && !cheminLibre(x, y, i, j)) {
 								continue;
 							}
 
-							// Verifier si le mouvement sort de l'échec
 							if (!mouvementMetEnEchec(couleur, x, y, i, j)) {
 								return true;
 							}
@@ -227,7 +215,6 @@ namespace modele {
 		dx = (dx > 0) ? 1 : (dx < 0) ? -1 : 0;
 		dy = (dy > 0) ? 1 : (dy < 0) ? -1 : 0;
 
-		// Ne pas verifier la case d'arrivée (contiendra peut-etre une piece a capturer)
 		for (int i = 1; i < steps; ++i) {
 			int x = xDepart + dx * i;
 			int y = yDepart + dy * i;

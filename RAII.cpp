@@ -1,3 +1,11 @@
+/**
+* Programme implémentant un processus RAII dans le but de détecter la validité d'un mouvement
+* \file RAII.cpp
+* \author Sebastian Crête et Stella Pastor
+* \date 26 avril 2025
+* Créé le 3 avril 2025
+**/
+
 #include "RAII.hpp"
 using namespace std;
 

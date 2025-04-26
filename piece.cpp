@@ -1,3 +1,11 @@
+/**
+* Programme définissant toutes les pièces utilisées dans un jeu d'échec
+* \file piece.cpp
+* \author Sebastian Crête et Stella Pastor
+* \date 26 avril 2025
+* Créé le 3 avril 2025
+**/
+
 #include "piece.hpp"
 #include <iostream>
 using namespace std;

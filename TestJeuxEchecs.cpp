@@ -1,3 +1,11 @@
+/**
+* Programme permettant d'implémanter des tests d'exceptions
+* \file TestJeuxEchecs.cpp
+* \author Sebastian Crête et Stella Pastor
+* \date 26 avril 2025
+* Créé le 3 avril 2025
+**/
+
 #include "piece.hpp"
 #include "RAII.hpp"
 #include "gtest/gtest.h"
