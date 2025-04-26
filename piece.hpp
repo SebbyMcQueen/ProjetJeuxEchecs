@@ -43,4 +43,39 @@ namespace modele {
 	private:
 		static int compteur;
 	};
+
+	class Tour : public Piece {
+	public:
+		Tour(Couleur couleur, int x, int y);
+		bool estMouvementValide(int nouveauX, int nouveauY) const override;
+		std::string getNom() const override { return "Tour"; }
+	};
+
+	class Cavalier : public Piece {
+	public:
+		Cavalier(Couleur couleur, int x, int y);
+		bool estMouvementValide(int nouveauX, int nouveauY) const override;
+		std::string getNom() const override { return "Cavalier"; }
+	};
+
+	class Reine :public Piece {
+	public:
+		Reine(Couleur couleur, int x, int y);
+		bool estMouvementValide(int nouveauX, int nouveauY) const override;
+		std::string getNom() const override { return "Reine"; }
+	};
+
+	class Fou : public Piece {
+	public:
+		Fou(Couleur couleur, int x, int y);
+		bool estMouvementValide(int nouveauX, int nouveauY) const override;
+		std::string getNom() const override { return "Fou"; }
+	};
+
+	class Pion : public Piece {
+	public:
+		Pion(Couleur couleur, int x, int y);
+		bool estMouvementValide(int nouveauX, int nouveauY) const override;
+		std::string getNom() const override { return "Pion"; }
+	};
 }
