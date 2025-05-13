@@ -7,7 +7,7 @@ A C++ chess game with a Qt-based graphical interface, built as part of the INF10
 ## 🚀 Features
 
 - ✅ Full chess logic implementation (legal moves, check, checkmate)
-- 🖥️ GUI using **Qt5**
+- 🖥️ GUI using **Qt6**
 - 🔁 Turn-based gameplay for two players
 - ♟️ Support for all standard pieces: Pawn, Rook, Knight, Bishop, Queen, and King
 - 🧠 Exception-safe architecture using C++ best practices
@@ -18,8 +18,8 @@ A C++ chess game with a Qt-based graphical interface, built as part of the INF10
 
 ## 🛠️ Technologies Used
 
-- **C++17**
-- **Qt 5 Framework**
+- **C++20**
+- **Qt 6 Framework**
 - **CMake** (for build configuration)
 - **Object-Oriented Design** principles
 - **Custom exception classes** for error management
@@ -28,8 +28,8 @@ A C++ chess game with a Qt-based graphical interface, built as part of the INF10
 
 ## 🧾 Requirements
 
-- C++17 compatible compiler (e.g. `g++`, `clang++`)
-- Qt 5 (recommended: Qt Creator for ease of GUI editing)
+- C++20 compatible compiler (e.g. `Visual Studio`, `CLion`)
+- Qt 6 (recommended: Qt Creator for ease of GUI editing)
 - CMake (version 3.10+)
 
 ---
